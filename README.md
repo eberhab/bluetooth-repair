@@ -16,15 +16,17 @@ This can be useful in different circumstances:
 
 # Installation
 
-* Install with
+1) Install with:
 ```bash
 $ wget -O - https://raw.githubusercontent.com/eberhab/bluetooth-repair/master/install.sh | bash
 ```
-1) Adapt `bt-repair.conf` to your needs, e.g.:
+This will clone the project to your home directory and register it with crontab to start at boot time.
+
+2) Adapt `bt-repair.conf` to your needs, e.g.:
 * Specify how many times bt-repair tries to connect to a paired device before deleting and re-pairing it
 * Add an external log handler (e.g. a telegram forwarder) to receive status messages and pairing codes (e.g keyboard pin)
 
-2) Add your devices MAC to `devices.txt` and assign a name, one device per line e.g.:
+3) Add your devices MAC to `devices.txt` and assign a name, one device per line e.g.:
 ```
 E8:DA:20:F0:5E:97 Ben's Pro-Controller
 ```
