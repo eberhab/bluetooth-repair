@@ -2,7 +2,7 @@
 
 A bluetooth auto-re-pair daemon based on bluetoothctl and a custom devices list
 
-Bt-repair continously monitors bluetoothctl for owned devices within range. Owned devices are defined based on a simple, user managed text file. If an owned devices is seen, bt-repair tries to connect a given number of times. If connect repeatedly fails, it will then delete the bluetooth device and attempt to pair it again.
+Bt-repair continously monitors bluetoothctl for owned devices within range. Owned devices are defined based on a simple, user managed text file. If an owned device is seen, bt-repair tries to connect a given number of times. If connect repeatedly fails, it will then delete the bluetooth device and attempt to pair it again.
 
 This can be useful in different circumstances:
 * Game controllers which are being used with more than one device might need to be re-paired after they had been connected to a different console. In my case this would be Nintendo Pro Controllers being alternatingly used with a Retropie and a Switch.
