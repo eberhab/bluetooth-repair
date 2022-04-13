@@ -1,6 +1,6 @@
 # bluetooth-repair
 
-A bluetooth auto-re-pair daemon based on bluetoothctl
+A bluetooth auto-re-pair daemon based on bluetoothctl and a custom devices list
 
 Bt-repair continously monitors bluetoothctl for owned devices within range. Owned devices are defined based on a simple, user managed text file. If an owned devices is seen, bt-repair tries to connect a given number of times. If connect repeatedly fails, it will then delete the bluetooth device and attempt to pair it again.
 
