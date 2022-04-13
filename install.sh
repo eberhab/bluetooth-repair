@@ -13,6 +13,8 @@ function do_git() {
         echo "Updating bt-repair in $HOME/bluetooth-repair ..."
         cd "bluetooth-repair"
         git pull
+        #git fetch origin
+        #git reset --hard origin/master
     fi
 }
 
@@ -26,6 +28,9 @@ function do_config() {
 
 function do_devices() {
     echo
+    if [ ! -f "devices.txt" ]; then
+        cp devices.txt.example devices.txt
+    fi
     if [[ $(wc -l <devices.txt) -le 1 ]]; then
         echo "TODO: Add your devices by MAC and name to devices.txt. Example:"
     else
