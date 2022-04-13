@@ -4,15 +4,14 @@
 # Benjamin Eberhardt, 12 April 2022
 
 # Parse the output of bluetoothctl to get a hook on newly discovered devices.
-# If a paired device is seen, we try to connect.
-# If we see a device we own, but it is not yet paired, then pair it.
-# This is possibly more elegant than trying to forcefully connect to all ever paired devices every 10 seconds.
-# It also allows to re-pair an owned device if it does not want to connect any more.
+# * If a paired device is seen, we try to connect.
+# * This is possibly more elegant than trying to forcefully connect to
+#   all ever paired devices every 10 seconds.
+# * If we see a device we own, but it is not yet paired, then pair it.
+# * If a device repeatedly fails to connect, delete and re-pair it.
 
-# TODO: Investigate why this error can happen, paired with wrong agent?!
-#Nov  7 13:02:02 retropie bluetoothd[1377]: No agent available for request type 2
-#Nov  7 13:02:02 retropie bluetoothd[1377]: device_confirm_passkey: Operation not permitted
-#Nov  7 13:02:02 retropie bluetoothd[1377]: connect error: Permission denied (13)
+# This script has been tested with bluetoothctl v5.50 under
+# Retropie 4.8 - Raspbian GNU/Linux 10 (buster)
 
 LOGFILE="bt-repair.log"
 CONFILE="bt-repair.conf"
@@ -418,17 +417,8 @@ function run_main_loop() {
     logger "--- Running version $VERSION - $(hostname) - $(date) ---"
     cleanlock     # Clean orphaned lock files from previous run
     in_game       # Check if we are in a game
-
-    # When using the expect script which keeps bluetoothctl running, then
-    # we face two issues which are not yet understood:
-    # - New lines are converted to LF instead of CRLF
-    # - output of agent PIN request are not parsed
     
-    #stdbuf -i0 -o0 -e0 ./bluetoothctl.xp| xargs -L 1| stdbuf -oL cut -b 10- |\
-    
-    # So for now we run bluetoothctl directly and run bt-repair itself in a loop to catch
-    # possible crashes.
-    
+    # Run bluetoothctl in scan mode, disable stdout buffer
     stdbuf -oL bluetoothctl -- scan on |\
         #grep --line-buffered -v "RSSI" |\
         grep --line-buffered -E "NEW|DEL|CHG|agent" |\
@@ -458,10 +448,4 @@ if [ ! -f "$CONFILE" ]; then
 fi
 
 source $CONFILE
-
 run_main_loop
-
-
-
-
-
