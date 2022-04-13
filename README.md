@@ -6,7 +6,7 @@ Bt-repair continously monitors bluetoothctl for owned devices within range. Owne
 
 This can be useful in different circumstances:
 * Game controllers which are being used with more than one device might need to be re-paired after they had been connected to a different console. In my case this would be Nintendo Pro Controllers being alternatingly used with a Retropie and a Switch.
-1. * "Have you tried turning it off an on again?". Sometimes bluetooth just repeatedly fails to connect to a paired device for unknown reason(s). Instead of having to delete the device by hand and pair it again manually, bt-repair can do it for you. This is especially helpful if e.g. the BT device/ controller in question is the only input device available/ to be used with the console.
+* "Have you tried turning it off an on again?". Sometimes bluetooth just repeatedly fails to connect to a paired device for unknown reason(s). Instead of having to delete the device by hand and pair it again manually, bt-repair can do it for you. This is especially helpful if e.g. the BT device/ controller in question is the only input device available/ to be used with the console.
 
 # Features
 
