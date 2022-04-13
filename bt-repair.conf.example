@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+##### Settings #####
+
+# Current version of this script
+VERSION=22.04.12
+
+# Allow this script to automatically pair devices we own.
+# They need to be listed in the known devices file (see $DEVFILE).
+# This can e.g. be necessary if the device (e.g. a pro controller)
+# has been attached to another consolen (e.g. a Switch) in the meantime.
+AUTO_PAIRING=true
+
+# Exclude some devices from automatic pairing by listing
+# a keyword from their listed device name.
+# For now this variable is not a list but must be a single
+# keyword which all of the blacklisted devices share in their name.
+AUTO_PAIRING_BLACKLIST="DoNotPair"
+
+# Some devices need an agent to be able to be paired. E.g. keyboards.
+# For now this variable is not a list but must be a single
+# keyword which all of the respective devices share in their config-name.
+AUTO_PAIRING_AGENT="Keyboard"
+
+# Show the full output of bluetoothctl, or only the output this script produces
+SHOW_BLUETOOTHCTL_OUTPUT=true
+
+# Show syslog from bluetooth and joycond
+SHOW_SYSLOG=true
+
+# Number of failed connection attempts for a specific device until we
+# try to re-pair it. This is e.g. useful if a controller is used on
+# multiple devices. This only works if a list of pairable devices is
+# specified and AUTO_PAIRING is true.
+CONNECT_RETRIES_UNTIL_REPAIR=5
+
+# Notify an external handler of the discovery of new devices and log messages
+# This is needed for agent based paring. Path of handler can be absolute
+# or relative to the location of bt-repair.
+NOTIFY_EXTERNAL=false
+NOTIFY_HANDLER="telegram_notify.py"
+
+# Do not start the bluetooth device scan if we are in a game!
+DO_NOT_SCAN_INGAME=true
