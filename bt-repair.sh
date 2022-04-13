@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# https://github.com/eberhab/bluetooth-repair/
+# Benjamin Eberhardt, 12 April 2022
+
 # Parse the output of bluetoothctl to get a hook on newly discovered devices.
 # If a paired device is seen, we try to connect.
 # If we see a device we own, but it is not yet paired, then pair it.
