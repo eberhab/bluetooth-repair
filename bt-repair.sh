@@ -23,7 +23,11 @@ function logger() {
     echo -e "[${BLUE}BAT${NC}] $1" |xargs
     echo $(date) "$1" >> $LOGFILE
     if $NOTIFY_EXTERNAL; then
-        eval $NOTIFY_HANDLER "$1" 2>/dev/null
+        if ! [[ "$NOTIFY_HANDLER" = /* ]]; then
+            # Need an absolute path
+            NOTIFY_HANDLER=$PWD/$NOTIFY_HANDLER
+        fi
+        $NOTIFY_HANDLER "$1" 2>/dev/null
     fi
 }
 
@@ -451,6 +455,7 @@ if [ ! -f "$CONFILE" ]; then
 fi
 
 source $CONFILE
+
 run_main_loop
 
 

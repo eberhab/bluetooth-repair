@@ -5,7 +5,7 @@
 
 cd ~/bluetooth-repair
 while true; do
-    ./bluetooth-repair.sh >/dev/null 2>&1
+    ./bt-repair.sh >/dev/null 2>&1
     sleep 5
 done
 

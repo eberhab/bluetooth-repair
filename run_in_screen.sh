@@ -9,7 +9,7 @@ if ! screen -list | grep -q "bluetooth"; then
   screen -S bluetooth -X screen -t syslog tail -F /var/log/syslog
   screen -S bluetooth -X screen -t bt-log tail -F ~/bluetooth-repair/bluetooth-repair.log
   screen -S bluetooth -X screen -t bt-repair bash
-  screen -S bluetooth -p bt-repair -X stuff $'cd ~/bluetooth-repair\nwhile true; do ./bluetooth-repair.sh; sleep 5; done\n\n'
+  screen -S bluetooth -p bt-repair -X stuff $'cd ~/bluetooth-repair\nwhile true; do ./bt-repair.sh; sleep 5; done\n\n'
 fi
 screen -S bluetooth -rd
 
