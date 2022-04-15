@@ -16,7 +16,7 @@ This can be useful in different circumstances:
 
 # Installation
 
-1) Install dependencies:
+1) Install dependencies (assuming you are on a debian based system):
 ```bash
 sudo apt install bluez # tested with v5.50
 ```
