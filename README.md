@@ -21,17 +21,17 @@ This can be useful in different circumstances:
 sudo apt install bluez # tested with v5.50
 ```
 
-3) Install bluetooth-repair with:
+3) Install bluetooth-repair as regular user with:
 ```bash
 $ wget -O - https://raw.githubusercontent.com/eberhab/bluetooth-repair/master/install.sh | bash
 ```
-This will clone the project to your home directory and register it with crontab to start at boot time.
+This will clone the project to your home directory and register it with crontab to start at boot time. Adding bt-repair to crontab will ask for your sudo password. If you cancel this step, the install will print the crontab line, so you can add it manually at a later time, or start bt-repair manually whenever you need it.
 
 4) Adapt `bt-repair.conf` to your needs, e.g.:
 * Specify how many times bt-repair tries to connect to a paired device before deleting and re-pairing it
 * Add an external log handler (e.g. a telegram forwarder) to receive status messages and pairing codes (e.g keyboard pin)
 
-4) Add your devices MAC to `devices.txt` and assign a name, one device per line e.g.:
+4) Add your devices' MAC to `devices.txt` and assign a name, one device per line e.g.:
 ```
 E8:DA:20:F0:5E:97 Ben's Pro-Controller
 ```
